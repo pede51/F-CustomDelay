@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Processor Type="SynthChain" ID="PATCH0.2.1" Bypassed="0" Gain="0.2754228711128235"
+           Balance="0.0" VoiceLimit="64.0" KillFadeTime="20.0" IconColour="0"
+           packageName="" BuildVersion="650">
+  <ChildProcessors>
+    <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+      <ChildProcessors>
+        <Processor Type="ScriptProcessor" ID="Interface" Bypassed="0">
+          <ChildProcessors/>
+          <Content>
+            <Control type="ScriptSlider" id="TimeUi" value="10.0"/>
+            <Control type="ScriptSlider" id="DryWetUi" value="1.0"/>
+            <Control type="ScriptSlider" id="FeedbackUi" value="0.119999997317791"/>
+            <Control type="ScriptSlider" id="PitchUi" value="12.0"/>
+            <Control type="ScriptSlider" id="GrainSizeUi" value="10000.0"/>
+          </Content>
+          <UIData Source="PATCH0.2.1UIData"/>
+        </Processor>
+      </ChildProcessors>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="1" Intensity="0.0">
+      <ChildProcessors/>
+    </Processor>
+    <Processor Type="EffectChain" ID="FX" Bypassed="0">
+      <ChildProcessors>
+        <Processor Type="ScriptFX" ID="Script FX1" Bypassed="0">
+          <ChildProcessors/>
+          <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+          <Content>
+            <Control type="ScriptSlider" id="PitchShift" value="0.0"/>
+          </Content>
+          <Networks>
+            <Network ID="script_fx1" Version="0.0.0">
+              <Node FactoryPath="container.chain" ID="script_fx1" Bypassed="0" ShowParameters="1"
+                    Name="script_fx1">
+                <Nodes>
+                  <Node ID="dry_wet1" FactoryPath="container.split" ShowParameters="1"
+                        NodeColour="4288125287" Bypassed="0" Name="dry_wet">
+                    <Nodes>
+                      <Node ID="dry_path" FactoryPath="container.chain" Bypassed="0" Name="dry_path"
+                            Folded="1">
+                        <Nodes>
+                          <Node ID="dry_wet_mixer" FactoryPath="control.xfader" Bypassed="0"
+                                Name="dry_wet_mixer" NodeColour="4288125287" Folded="1">
+                            <Properties>
+                              <Property ID="NumParameters" Value="2"/>
+                              <Property ID="Mode" Value="Linear"/>
+                            </Properties>
+                            <SwitchTargets>
+                              <SwitchTarget>
+                                <Connections>
+                                  <Connection NodeId="dry_gain" ParameterId="Gain"/>
+                                </Connections>
+                              </SwitchTarget>
+                              <SwitchTarget>
+                                <Connections>
+                                  <Connection NodeId="wet_gain" ParameterId="Gain"/>
+                                </Connections>
+                              </SwitchTarget>
+                            </SwitchTargets>
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="1.0" ID="Value" Automated="1"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="dry_gain" FactoryPath="core.gain" Bypassed="0" Name="dry_gain"
+                                NodeColour="4288125287" Folded="1">
+                            <Parameters>
+                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                         SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                      <Node ID="wet_path" FactoryPath="container.chain" Bypassed="0" Name="wet_path">
+                        <Nodes>
+                          <Node ID="wet_gain" FactoryPath="core.gain" Bypassed="0" Name="wet_gain"
+                                NodeColour="4288125287" Folded="1">
+                            <Parameters>
+                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="Gain" Automated="1"/>
+                              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                         SkewFactor="0.3010300099849701" ID="Smoothing" Value="20.0"/>
+                              <Parameter MinValue="-100.0" MaxValue="0.0" StepSize="0.1000000014901161"
+                                         SkewFactor="5.422270774841309" ID="ResetValue" Value="0.0"/>
+                            </Parameters>
+                          </Node>
+                          <Node ID="tempo_sync" FactoryPath="control.tempo_sync" Bypassed="0"
+                                Name="tempo_sync" Folded="1">
+                            <Parameters>
+                              <Parameter MinValue="0.0" MaxValue="18.0" StepSize="1.0" ID="Tempo" Automated="1"/>
+                              <Parameter MinValue="1.0" MaxValue="16.0" StepSize="1.0" ID="Multiplier"
+                                         Value="1.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1.0" StepSize="1.0" ID="Enabled" Value="1.0"/>
+                              <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                         ID="UnsyncedTime" Value="104.0000015497207"/>
+                            </Parameters>
+                            <ModulationTargets>
+                              <Connection NodeId="delay" ParameterId="DelayTime"/>
+                            </ModulationTargets>
+                          </Node>
+                          <Node ID="feedback_delay1" FactoryPath="container.fix32_block" Bypassed="0"
+                                ShowParameters="1" Name="feedback_delay1">
+                            <Nodes>
+                              <Node ID="fb_out" FactoryPath="routing.receive" Bypassed="0" Name="fb_out">
+                                <Parameters>
+                                  <Parameter MinValue="0.0" MaxValue="1.0" ID="Feedback" Automated="1"/>
+                                </Parameters>
+                              </Node>
+                              <Node ID="delay" FactoryPath="core.fix_delay" Bypassed="0" Name="delay">
+                                <Parameters>
+                                  <Parameter MinValue="0.0" MaxValue="1000.0" StepSize="0.1000000014901161"
+                                             SkewFactor="0.3010300099849701" ID="DelayTime" Automated="1"/>
+                                  <Parameter MinValue="0.0" MaxValue="1024.0" StepSize="1.0" ID="FadeTime"
+                                             Value="1024.0"/>
+                                </Parameters>
+                              </Node>
+                              <Node ID="fb_in" FactoryPath="routing.send" Bypassed="0" Name="fb_in">
+                                <Properties>
+                                  <Property ID="Connection" Value="fb_out"/>
+                                </Properties>
+                                <Parameters/>
+                              </Node>
+                              <Node ID="faust2" FactoryPath="core.faust" Bypassed="0" Name="faust2">
+                                <Properties>
+                                  <Property ID="ClassId" Value="TimeStretch"/>
+                                  <Property ID="NumParameters" Value="0"/>
+                                </Properties>
+                                <Parameters>
+                                  <Parameter MinValue="100.0" MaxValue="10000.0" StepSize="1.0" ID="chunk"
+                                             Automated="1"/>
+                                  <Parameter MinValue="-12.0" MaxValue="12.0" StepSize="1.0" ID="pitch" Automated="1"/>
+                                </Parameters>
+                                <SwitchTargets/>
+                              </Node>
+                            </Nodes>
+                            <Parameters>
+                              <Parameter ID="Feedback" MinValue="0.0" MaxValue="1.0" Automated="1">
+                                <Connections>
+                                  <Connection NodeId="fb_out" ParameterId="Feedback"/>
+                                </Connections>
+                              </Parameter>
+                            </Parameters>
+                          </Node>
+                        </Nodes>
+                        <Parameters/>
+                      </Node>
+                    </Nodes>
+                    <Parameters>
+                      <Parameter MinValue="0.0" MaxValue="1.0" ID="DryWet" Automated="1">
+                        <Connections>
+                          <Connection NodeId="dry_wet_mixer" ParameterId="Value"/>
+                        </Connections>
+                      </Parameter>
+                    </Parameters>
+                  </Node>
+                </Nodes>
+                <Parameters>
+                  <Parameter ID="TempoScript" MinValue="0.0" MaxValue="18.0" StepSize="1.0"
+                             Value="13.0">
+                    <Connections>
+                      <Connection NodeId="tempo_sync" ParameterId="Tempo"/>
+                    </Connections>
+                  </Parameter>
+                  <Parameter ID="DryWetScript" MinValue="0.0" MaxValue="1.0" Value="0.4720635986328124">
+                    <Connections>
+                      <Connection NodeId="dry_wet1" ParameterId="DryWet"/>
+                    </Connections>
+                  </Parameter>
+                  <Parameter ID="FeedbackScript" MinValue="0.0" MaxValue="1.0" Value="0.7413758544921873">
+                    <Connections>
+                      <Connection NodeId="feedback_delay1" ParameterId="Feedback"/>
+                    </Connections>
+                  </Parameter>
+                  <Parameter ID="PitchScript" MinValue="-12.0" MaxValue="12.0" Value="12.0"
+                             StepSize="1.0">
+                    <Connections>
+                      <Connection NodeId="faust2" ParameterId="pitch"/>
+                    </Connections>
+                  </Parameter>
+                  <Parameter ID="ChunkScript" MinValue="100.0" MaxValue="10000.0" StepSize="1.0"
+                             Value="1.0">
+                    <Connections>
+                      <Connection NodeId="faust2" ParameterId="chunk"/>
+                    </Connections>
+                  </Parameter>
+                </Parameters>
+              </Node>
+            </Network>
+          </Networks>
+          <UIData>
+            <ContentProperties DeviceType="Desktop">
+              <Component type="ScriptSlider" id="PitchShift" x="0.0" y="0.0" stepSize="0.009999999776482582"/>
+            </ContentProperties>
+          </UIData>
+        </Processor>
+      </ChildProcessors>
+    </Processor>
+    <Processor Type="WaveSynth" ID="Waveform Generator1" Bypassed="0" Gain="0.25"
+               Balance="0.0" VoiceLimit="256.0" KillFadeTime="20.0" IconColour="0"
+               OctaveTranspose1="0.0" OctaveTranspose2="0.0" Detune1="0.0" Detune2="0.0"
+               WaveForm1="3.0" WaveForm2="3.0" Pan1="0.0" Pan2="0.0" Mix="0.5"
+               EnableSecondOscillator="1.0" PulseWidth1="0.5" PulseWidth2="0.5"
+               HardSync="0.0">
+      <ChildProcessors>
+        <Processor Type="MidiProcessorChain" ID="Midi Processor" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="GainModulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors>
+            <Processor Type="SimpleEnvelope" ID="DefaultEnvelope1" Bypassed="0" Monophonic="0.0"
+                       Retrigger="1.0" Intensity="1.0" Attack="5.0" Release="10.0" LinearMode="1.0">
+              <ChildProcessors>
+                <Processor Type="ModulatorChain" ID="Attack Time Modulation" Bypassed="0"
+                           Intensity="1.0">
+                  <ChildProcessors/>
+                </Processor>
+              </ChildProcessors>
+            </Processor>
+          </ChildProcessors>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="PitchModulation" Bypassed="0" Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="EffectChain" ID="FX" Bypassed="0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Mix Modulation" Bypassed="0" Intensity="1.0">
+          <ChildProcessors/>
+        </Processor>
+        <Processor Type="ModulatorChain" ID="Osc2 Pitch Modulation" Bypassed="0"
+                   Intensity="0.0">
+          <ChildProcessors/>
+        </Processor>
+      </ChildProcessors>
+      <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+    </Processor>
+  </ChildProcessors>
+  <RoutingMatrix NumSourceChannels="2" Channel0="0" Send0="-1" Channel1="1" Send1="-1"/>
+  <macro_controls>
+    <macro name="Macro 1" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 2" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 3" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 4" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 5" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 6" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 7" value="0.0" midi_cc="-1"/>
+    <macro name="Macro 8" value="0.0" midi_cc="-1"/>
+  </macro_controls>
+  <MidiAutomation/>
+  <MPEData Enabled="0"/>
+</Processor>

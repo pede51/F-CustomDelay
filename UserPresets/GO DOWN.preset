@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Preset Version="1.0.0">
+  <Content Processor="Interface">
+    <Control type="ScriptSlider" id="knob2" value="14.0"/>
+    <Control type="ScriptSlider" id="knob6" value="1.0"/>
+    <Control type="ScriptSlider" id="knob3" value="0.8399999737739563"/>
+    <Control type="ScriptSlider" id="knob4" value="-12.0"/>
+    <Control type="ScriptSlider" id="knob1" value="7380.0"/>
+    <Control type="ScriptSlider" id="knob5" value="0.119999997317791"/>
+    <Control type="ScriptSlider" id="knob7" value="0.5"/>
+  </Content>
+  <MidiAutomation/>
+  <MPEData Enabled="0"/>
+</Preset>

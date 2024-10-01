@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptImage" id="bg" x="0.0" y="-3.0" popupOnRightClick="0"
+             width="600.0" height="800.0" pluginParameterName="bg" fileName="{PROJECT_FOLDER}bg.jpg"
+             enabled="0" locked="1"/>
+  <Component type="ScriptSlider" id="knob2" x="250.0" y="110.0" middlePosition="9.0"
+             stepSize="1.0" max="18.0" text="18.0" pluginParameterName="TIME"
+             processorId="Script FX1" parameterId="TempoScript" mode="TempoSync"
+             defaultValue="13.0" width="100.0" height="100.0"/>
+  <Component type="ScriptSlider" id="knob6" x="50.0" y="520.0" text="0.0"
+             processorId="Script FX1" parameterId="DryWetScript" defaultValue="0.5"
+             width="100.0" height="100.0"/>
+  <Component type="ScriptSlider" id="knob3" x="460.0" y="110.0" processorId="Script FX1"
+             parameterId="FeedbackScript" text="1.0" defaultValue="0.5" width="100.0"
+             height="100.0"/>
+  <Component type="ScriptSlider" id="knob4" x="50.0" y="320.0" max="12.0"
+             text="-12.0" processorId="Script FX1" parameterId="PitchScript"
+             min="-12.0" defaultValue="12.0" width="100.0" height="100.0"
+             stepSize="1.0"/>
+  <Component type="ScriptSlider" id="knob1" x="50.0" y="110.0" text="7248.0"
+             max="10000.0" min="5000.0" defaultValue="5000.0" itemColour2="4227792896"
+             width="100.0" height="100.0" itemColour="1727988435" processorId="Script FX1"
+             parameterId="ChunkScript" stepSize="1.0"/>
+  <Component type="ScriptSlider" id="knob5" x="250.0" y="320.0" text="0.0"
+             processorId="Script FX1" isMetaParameter="1" parameterId="DryWetScript2"
+             width="100.0" height="100.0"/>
+  <Component type="ScriptLabel" id="text1" x="40.0" y="210.0" text="5000.0"
+             itemColour="5120032" fontName="Comic Sans MS" fontSize="27.0"
+             fontStyle="Bold"/>
+  <Component type="ScriptLabel" id="text2" x="240.0" y="210.0" text="1/64t"
+             itemColour="5120032" fontName="Comic Sans MS" fontSize="27.0"
+             fontStyle="Bold"/>
+  <Component type="ScriptLabel" id="text3" x="450.0" y="210.0" text="0.0"
+             itemColour="5120032" fontName="Comic Sans MS" fontSize="27.0"
+             fontStyle="Bold"/>
+  <Component type="ScriptLabel" id="text4" x="40.0" y="420.0" text="-7.0"
+             itemColour="5120032" fontName="Comic Sans MS" fontSize="27.0"
+             fontStyle="Bold"/>
+  <Component type="ScriptLabel" id="text5" x="240.0" y="420.0" text="0.86"
+             itemColour="5120032" fontName="Comic Sans MS" fontSize="27.0"
+             fontStyle="Bold"/>
+  <Component type="ScriptLabel" id="text6" x="40.0" y="620.0" text="1.0" itemColour="5120032"
+             fontName="Comic Sans MS" fontSize="27.0" fontStyle="Bold"/>
+</ContentProperties>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentProperties DeviceType="Desktop">
+  <Component type="ScriptSlider" id="TimeUi" x="100.0" y="140.0" middlePosition="9.0"
+             stepSize="1.0" max="18.0" text="time" pluginParameterName="TIME"
+             processorId="Script FX1" parameterId="TempoScript" mode="TempoSync"/>
+  <Component type="ScriptSlider" id="DryWetUi" x="400.0" y="140.0" text="dry/wet"
+             processorId="Script FX1" parameterId="DryWetScript"/>
+  <Component type="ScriptSlider" id="FeedbackUi" x="250.0" y="220.0" processorId="Script FX1"
+             parameterId="FeedbackScript" text="feedback"/>
+  <Component type="ScriptSlider" id="PitchUi" x="260.0" y="100.0" max="24.0"
+             text="Pitch" processorId="Script FX1" parameterId="PitchScript"
+             min="-24.0"/>
+  <Component type="ScriptSlider" id="GrainSizeUi" x="162.0" y="61.0" text="GrainSize"
+             processorId="Script FX1" parameterId="ChunkScript" max="10000.0"
+             min="100.0"/>
+</ContentProperties>
